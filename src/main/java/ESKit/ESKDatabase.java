@@ -7,16 +7,23 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class EKDatabase {
+public class ESKDatabase {
 
-	private EKConnection con;
+	private ESKConnection con;
 	private String indexName;
 
-	public EKDatabase() {
-		con = new EKConnection();
+	public ESKDatabase() {
+		con = new ESKConnection();
 	}
 
-	public StringBuffer executeQuery( EKQuery query ) throws IOException {
+	/**
+	 * Executes the given query and returns the result as a StringBuffer.
+	 * 
+	 * @param query to execute.
+	 * @return the result.
+	 * @throws IOException if error.
+	 */
+	public StringBuffer executeQuery( ESKQuery query ) throws IOException {
 		URL url = new URL( "http://" + con.getHostName() + ":" + con.getPort() + "/" + indexName
 				+ "/_search?pretty" );
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();

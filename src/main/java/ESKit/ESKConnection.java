@@ -10,20 +10,20 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
-public class EKConnection {
+public class ESKConnection {
 	
 	private String clusterName = "elasticsearch", hostName = "localhost";
 	private int port = 9300;
 	private Client client;
 	private TransportClient transportClient;
 	
-	public EKConnection() {}
+	public ESKConnection() {}
 	
-	public EKConnection(String clusterName) {
+	public ESKConnection(String clusterName) {
 		setClusterName(clusterName);
 	}
 
-	public EKConnection(String clusterName, int port) {
+	public ESKConnection(String clusterName, int port) {
 		this(clusterName);
 		setPort(port);
 	}
@@ -51,7 +51,7 @@ public class EKConnection {
 	
 	/**
 	 * 
-	 * @return
+	 * @return the client once the connection is established.
 	 * @throws UnknownHostException
 	 */
 	public Client connect() throws UnknownHostException {
@@ -68,20 +68,36 @@ public class EKConnection {
 		return getClient();
 	}
 	
+	/**
+	 * @return the host name.
+	 */
 	public String getHostName() {
 		return this.hostName;
 	}
 	
+	/**
+	 * Disconnects the client from the cluster.
+	 */
 	public void disconnect() {
 		this.client.close();
 	}
 
 	// ----------- END OF PUBLIC METHODS -------------
 
+	/**
+	 * Changes the cluster name.
+	 * 
+	 * @param clusterName to set.
+	 */
 	private void setClusterName( String clusterName ) {
 		this.clusterName = clusterName;
 	}
 	
+	/**
+	 * Changes the port number.
+	 * 
+	 * @param port to set.
+	 */
 	private void setPort( int port ) {
 		this.port = port;
 	}

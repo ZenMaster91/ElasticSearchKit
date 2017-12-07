@@ -1,13 +1,18 @@
 package ESKit;
 
-public class EKQuery {
+public class ESKQuery {
 	
 	private String query;
 	
-	public EKQuery(String query) {
+	public ESKQuery(String query) {
 		this.query = query;
 	}
 	
+	/**
+	 * Sets the parameters of the query.
+	 * 
+	 * @param param to set.
+	 */
 	public void setParam(Object param) {
 		StringBuilder sb = new StringBuilder(query);
 		int index = query.indexOf( '?' );

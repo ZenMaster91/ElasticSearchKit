@@ -8,7 +8,7 @@ public class EKQueryTest {
 
 	@Test
 	public void test() {
-		EKQuery statement = new EKQuery( "select ? from ? where ? = cod.coche and ? = ?;" );
+		ESKQuery statement = new ESKQuery( "select ? from ? where ? = cod.coche and ? = ?;" );
 		System.out.println( statement.getQuery() );
 		statement.setParam( "*" );
 		statement.setParam( "T.Empleados" );
