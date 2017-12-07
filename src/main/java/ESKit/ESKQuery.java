@@ -2,27 +2,34 @@ package ESKit;
 
 public class ESKQuery {
 	
-	private String query;
+	private String _predicate;
+	
+	// ----------- END OF FIELDS -------------
 	
 	public ESKQuery(String query) {
-		this.query = query;
+		this._predicate = query;
 	}
+	
+	// ----------- END OF CONSTRUCTORS -------------
 	
 	/**
 	 * Sets the parameters of the query.
 	 * 
 	 * @param param to set.
 	 */
-	public void setParam(Object param) {
-		StringBuilder sb = new StringBuilder(query);
-		int index = query.indexOf( '?' );
+	public ESKQuery setParam(Object param) {
+		StringBuilder sb = new StringBuilder(_predicate);
+		int index = _predicate.indexOf( '?' );
+		if(index == -1) {
+			throw new IllegalArgumentException( "There's no empty parameter to set in the query: " +  _predicate);
+		}
 		sb.deleteCharAt( index );
 		sb.insert( index, param.toString() );
-		query = sb.toString();
+		_predicate = sb.toString();
+		return this;
 	}
 	
-	public String getQuery() {
-		return this.query;
+	public String asString() {
+		return this._predicate;
 	}
-
 }
