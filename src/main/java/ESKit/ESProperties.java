@@ -10,7 +10,7 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
-public class ESKProperties {
+public class ESProperties {
 
 	private String _clusterName = "elasticsearch", _hostName = "localhost", _indexName;
 	private int _port = 9300;
@@ -19,23 +19,23 @@ public class ESKProperties {
 	
 	// ----------- END OF FIELDS -------------
 
-	public ESKProperties() {}
+	public ESProperties() {}
 
-	public ESKProperties( String clusterName ) {
+	public ESProperties( String clusterName ) {
 		setClusterName( clusterName );
 	}
 
-	public ESKProperties( String clusterName, int port ) {
+	public ESProperties( String clusterName, int port ) {
 		this( clusterName );
 		setPort( port );
 	}
 
-	public ESKProperties( String clusterName, int port, String hostName ) {
+	public ESProperties( String clusterName, int port, String hostName ) {
 		this( clusterName, port );
 		this._hostName = hostName;
 	}
 	
-	public ESKProperties( String clusterName, int port, String hostName, String indexName ) {
+	public ESProperties( String clusterName, int port, String hostName, String indexName ) {
 		this( clusterName, port, hostName );
 		this._indexName = indexName;
 	}
@@ -46,7 +46,7 @@ public class ESKProperties {
 		return _clusterName;
 	}
 
-	public ESKProperties setClusterName( String _clusterName ) {
+	public ESProperties setClusterName( String _clusterName ) {
 		this._clusterName = _clusterName;
 		return this;
 	}
@@ -55,7 +55,7 @@ public class ESKProperties {
 		return _hostName;
 	}
 
-	public ESKProperties setHostName( String _hostName ) {
+	public ESProperties setHostName( String _hostName ) {
 		this._hostName = _hostName;
 		return this;
 	}
@@ -64,7 +64,7 @@ public class ESKProperties {
 		return _indexName;
 	}
 
-	public ESKProperties setIndexName( String _indexName ) {
+	public ESProperties setIndexName( String _indexName ) {
 		this._indexName = _indexName;
 		return this;
 	}
@@ -73,7 +73,7 @@ public class ESKProperties {
 		return _port;
 	}
 
-	public ESKProperties setPort( int _port ) {
+	public ESProperties setPort( int _port ) {
 		this._port = _port;
 		return this;
 	}
@@ -82,7 +82,7 @@ public class ESKProperties {
 		return _client;
 	}
 
-	public ESKProperties setClient( Client _client ) {
+	public ESProperties setClient( Client _client ) {
 		this._client = _client;
 		return this;
 	}
@@ -91,7 +91,7 @@ public class ESKProperties {
 		return _transportClient;
 	}
 
-	public ESKProperties setTransportClient( TransportClient _transportClient ) {
+	public ESProperties setTransportClient( TransportClient _transportClient ) {
 		this._transportClient = _transportClient;
 		return this;
 	}

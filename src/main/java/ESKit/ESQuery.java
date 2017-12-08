@@ -1,12 +1,12 @@
 package ESKit;
 
-public class ESKQuery {
+public class ESQuery {
 	
 	private String _predicate;
 	
 	// ----------- END OF FIELDS -------------
 	
-	public ESKQuery(String query) {
+	public ESQuery(String query) {
 		this._predicate = query;
 	}
 	
@@ -17,7 +17,7 @@ public class ESKQuery {
 	 * 
 	 * @param param to set.
 	 */
-	public ESKQuery setParam(Object param) {
+	public ESQuery setParam(Object param) {
 		StringBuilder sb = new StringBuilder(_predicate);
 		int index = _predicate.indexOf( '?' );
 		if(index == -1) {

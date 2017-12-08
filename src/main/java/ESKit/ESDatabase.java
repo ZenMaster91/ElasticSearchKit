@@ -16,27 +16,27 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
-public class ESKDatabase {
+public class ESDatabase {
 
-	private ESKProperties _props;
+	private ESProperties _props;
 	
 	// ----------- END OF FIELDS -------------
 
-	public ESKDatabase() {
-		_props = new ESKProperties();
+	public ESDatabase() {
+		_props = new ESProperties();
 	}
 
-	public ESKDatabase( ESKProperties properties ) {
+	public ESDatabase( ESProperties properties ) {
 		_props = properties;
 	}
 	
 	// ----------- END OF CONSTRUCTORS -------------
 
-	public ESKProperties getProperties() {
+	public ESProperties getProperties() {
 		return this._props;
 	}
 
-	public void setProperties( ESKProperties connection ) {
+	public void setProperties( ESProperties connection ) {
 		this._props = connection;
 	}
 
@@ -47,7 +47,7 @@ public class ESKDatabase {
 	 * @return the result. Null if any error.
 	 * @throws IOException if error.
 	 */
-	public Optional<StringBuffer> execute( ESKQuery query ) {
+	public Optional<StringBuffer> execute( ESQuery query ) {
 		try {
 			URL url = new URL(
 					"http://" + _props.getHostName() + ":" + _props.getPort() + "/"
