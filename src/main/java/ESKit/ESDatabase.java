@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
@@ -16,28 +17,30 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
-public class ESDatabase {
+public class ESDatabase implements Serializable {
 
-	private ESProperties _props;
-	
+	private static final long serialVersionUID = -5105605239381465569L;
+
+	private ESSettings _settings;
+
 	// ----------- END OF FIELDS -------------
 
 	public ESDatabase() {
-		_props = new ESProperties();
+		_settings = new ESSettings();
 	}
 
-	public ESDatabase( ESProperties properties ) {
-		_props = properties;
+	public ESDatabase( ESSettings properties ) {
+		_settings = properties;
 	}
-	
+
 	// ----------- END OF CONSTRUCTORS -------------
 
-	public ESProperties getProperties() {
-		return this._props;
+	public ESSettings getProperties() {
+		return this._settings.clone();
 	}
 
-	public void setProperties( ESProperties connection ) {
-		this._props = connection;
+	public void setProperties( ESSettings connection ) {
+		this._settings = connection;
 	}
 
 	/**
@@ -50,8 +53,8 @@ public class ESDatabase {
 	public Optional<StringBuffer> execute( ESQuery query ) {
 		try {
 			URL url = new URL(
-					"http://" + _props.getHostName() + ":" + _props.getPort() + "/"
-							+ _props.getIndexName()
+					"http://" + _settings.getHostName() + ":" + _settings.getPort() + "/"
+							+ _settings.getIndexName()
 							+ "/_search?pretty" );
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod( "POST" );
@@ -76,7 +79,7 @@ public class ESDatabase {
 			return Optional.empty();
 		}
 	}
-	
+
 	// ----------- END OF PUBLIC METHODS -------------
 
 	// ----------- END OF PROTECTED METHODS -------------
@@ -86,26 +89,24 @@ public class ESDatabase {
 	 * @return the client once the connection is established.
 	 * @throws UnknownHostException
 	 */
-	@SuppressWarnings("unused")
-	private Client connect() throws UnknownHostException {
-		_props.setTransportClient( new PreBuiltTransportClient( Settings.builder()
-				.put( "cluster.name", _props.getClusterName() )
+	@SuppressWarnings("unused") private Client connect() throws UnknownHostException {
+		_settings.setTransportClient( new PreBuiltTransportClient( Settings.builder()
+				.put( "cluster.name", _settings.getClusterName() )
 				.put( "client.transport.sniff", false )
 				.put( "client.transport.ping_timeout", 20, TimeUnit.SECONDS )
 				.build() ) );
 
-		_props.getTransportClient().addTransportAddress( new TransportAddress(
-				InetAddress.getByName( _props.getHostName() ), _props.getPort() ) );
+		_settings.getTransportClient().addTransportAddress( new TransportAddress(
+				InetAddress.getByName( _settings.getHostName() ), _settings.getPort() ) );
 
-		_props.setClient( _props.getTransportClient() );
-		return _props.getClient();
+		_settings.setClient( _settings.getTransportClient() );
+		return _settings.getClient();
 	}
 
 	/**
 	 * Disconnects the client from the cluster.
 	 */
-	@SuppressWarnings("unused")
-	private void disconnect() {
-		_props.getClient().close();
+	@SuppressWarnings("unused") private void disconnect() {
+		_settings.getClient().close();
 	}
 }
