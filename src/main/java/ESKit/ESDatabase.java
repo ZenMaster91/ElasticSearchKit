@@ -44,12 +44,12 @@ public class ESDatabase implements Serializable {
 
 	// ----------- END OF CONSTRUCTORS -------------
 
-	public ESSettings getProperties() {
+	public ESSettings getSettings() {
 		return this._settings.clone();
 	}
 
-	public void setProperties( ESSettings connection ) {
-		this._settings = connection;
+	public void setSettings( ESSettings settings ) {
+		this._settings = settings;
 	}
 
 	/**
