@@ -19,7 +19,7 @@ import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
 /**
  * 
- * ESDatabase.java
+ * This is the first comment in JDOC.
  *
  * @author willy
  * @version
