@@ -17,6 +17,15 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
+/**
+ * 
+ * ESDatabase.java
+ *
+ * @author willy
+ * @version
+ * @since 2017"1"492017
+ * @formatter Oviedo Computing Community
+ */
 public class ESDatabase implements Serializable {
 
 	private static final long serialVersionUID = -5105605239381465569L;
